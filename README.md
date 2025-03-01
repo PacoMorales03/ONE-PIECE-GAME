@@ -62,3 +62,14 @@ Zonas y Efectos:
 - Red Line: +10% DEF, -5% VEL
 
 Cada zona tiene probabilidades diferentes de ser seleccionada, y una isla dentro de esa zona es elegida aleatoriamente.
+### Función ideales:
+![imagen](https://github.com/user-attachments/assets/25a1e650-6c8d-4bdb-8f55-9ba597cb2a89)
+asigna un "ideal" (como pirata, bandido, revolucionario, etc.) al personaje según su lugar de nacimiento. Los valores posibles varían dependiendo de la isla de origen, y algunos lugares de nacimiento tienen un sistema de probabilidades ajustado para generar un resultado más específico.\
+Zonas y Resultados:
+- Isla de la Armada Revolucionaria: El ideal será aleatoriamente pirata, bandido o revolucionario.
+- Mary Geoise: El personaje puede ser tenryubito, esclavo o sirviente. Si es tenryubito, puede tener eventos aleatorios (traición, caballero sagrado o noble), lo que afectará su ideal:
+  - Traición: Puede ser pirata o revolucionario.
+  - Caballero sagrado: Se convierte en caballero sagrado.
+  - Noble: El personaje sigue siendo noble.
+- Otros lugares de nacimiento: El ideal será aleatorio entre pirata, marine, bandido o revolucionario.
+
