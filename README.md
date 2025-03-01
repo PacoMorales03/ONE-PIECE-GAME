@@ -7,7 +7,7 @@ He dividido el código en 3 secciones distintas:
 - Funciones necesarias para cargar y guardar partida
 - Finales
 ## Flujo principal del código:
-Aquí se encuentran tanto el bloque principal como las funciones utilizadas para el funcionamiento general de el código. 
+Aquí se encuentran tanto el bloque principal como las funciones utilizadas para el funcionamiento general del código. 
 ### Bloque principal:
 ![imagen](https://github.com/user-attachments/assets/6aace5a0-045b-46fb-901e-76773eeeb830)
 Permite al jugador iniciar una nueva partida, cargar una partida guardada o salir del juego. El flujo general del juego está basado en un menú de opciones que se repite hasta que el jugador decide salir. A continuación, se detalla el funcionamiento de cada parte del código:
