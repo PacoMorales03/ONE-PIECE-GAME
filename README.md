@@ -328,3 +328,44 @@ Muestra un mensaje de victoria si el personaje sigue el ideal de caballero sagra
 ### Función victoriaBandido():
 ![imagen](https://github.com/user-attachments/assets/1f79f363-a8eb-43dc-9acf-74e830d587a0)
 Muestra un mensaje de victoria si el personaje sigue el ideal de bandido, imponiendo su propia ley y dominando mares y tierras sin rendir cuentas a nadie.
+
+# Pruebas
+En este apartado se adjuntarán distintas pruebas, tanto de caja blanca como de caja negra.
+## Pruebas de caja blanca:
+A lo largo del código he implementado distintas estructuras lógicas para el manejo de errores, entre ellas try-except
+### Ejemplo 1:
+![imagen](https://github.com/user-attachments/assets/551bdbc5-f6a0-403f-b695-2136072cf3c5)
+En este caso el try-except se encarga de controlar que el dato introducido sea numérico y en caso de no serlo no termine el programa por un error
+### Ejemplo 2:
+![imagen](https://github.com/user-attachments/assets/1333d55a-31c7-4497-a6e8-c3675ceda511)
+Aquí en caso de no poder abrir el archivo json con las partidas guardadas devolvería una lista vacía, esto se hace así para que posteriormente no genere un error al intentar seleccionar la partida.
+A parte de la gestión de errores con los try-excepts he tratado de llevar una buena organización a la hora de manejar todas las opciones posibles cada vez que ha sido necesario, para esto he usado if,elif y else anidados.
+### Ejemplo 3:
+![imagen](https://github.com/user-attachments/assets/7c514779-507f-45b8-8f43-39ebab51ae97)
+En este caso se cubren todas las opciones disponibles usando if-else. Esto hace que no de lugar a posibles errores en cuánto al funcionamiento al no haber opciones no evaluadas.
+## Pruebas de caja negra:
+### Menú principal
+![imagen](https://github.com/user-attachments/assets/34dc458c-591c-4280-bbb3-35bc227be967)
+### Crear partida:
+![imagen](https://github.com/user-attachments/assets/b4ffb18e-a74f-4ef9-ac43-f62b93e2d9fc)
+### Lanzarte a la aventura
+![imagen](https://github.com/user-attachments/assets/0b2e2808-4428-4665-b099-2e1bcd6983d9)
+### Pelear
+![imagen](https://github.com/user-attachments/assets/427215ba-f509-4faa-b365-c3a31269055e)ç
+Durante esta prueba me he dado cuenta de que hay que reajustar el daño del combate para siempre hacer un mínimo de daño, por lo que he corregido eso:
+![imagen](https://github.com/user-attachments/assets/48445970-d278-4d55-a3e1-8754d3f6a146)
+Ahora si el resultado del ataque menos la defensa es menor a 10 se inflingirá siempre 10 de daño. 
+### Huida
+![imagen](https://github.com/user-attachments/assets/e0c182fa-91d9-465a-99a1-b57927609c72)
+### Entrenar
+![imagen](https://github.com/user-attachments/assets/6f02cfbf-c119-47a1-a5fe-6fd32bee37a5)
+### Retirarte
+![imagen](https://github.com/user-attachments/assets/565bf828-650a-4e3c-989b-ceb14a192aee)
+### Cargar partida sin partidas guardadas
+![imagen](https://github.com/user-attachments/assets/9c2fa45e-ca57-4ada-a9f5-f8a555b0a9e6)
+### Guardar partida y guardar y salir
+![imagen](https://github.com/user-attachments/assets/28097081-8a5d-4ddb-93ed-57b7b416f5d7)
+### Cargar partida
+![imagen](https://github.com/user-attachments/assets/58c6f0ac-5e60-4ff9-87fa-145801de58fb)
+### Salir
+![imagen](https://github.com/user-attachments/assets/192833c3-8c18-4b64-adf3-60995ea64ba7)
