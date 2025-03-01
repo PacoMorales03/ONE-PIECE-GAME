@@ -69,14 +69,6 @@ Funcionamiento:
 - Salida:
     - Si el jugador opta por retirarse o terminar la aventura (tras un combate o un final específico), el juego termina.
     - El estado del personaje se guarda si se selecciona una opción para guardar la partida (opciones 4 y 5).
-### Función muerteVejez():
-![imagen](https://github.com/user-attachments/assets/34acbed3-6c2e-4912-a66f-abb2063eba96)
-Simula el final de la vida de un personaje debido a la vejez. El mensaje mostrado depende del nivel de fama del personaje al momento de su muerte. Según la fama del personaje, el mensaje varía para reflejar su impacto en la historia o la falta del mismo.
-- Flujo:
-  - Si el nivel de fama del personaje es menor o igual a 2, se indica que el personaje vivió algunas aventuras, pero sin un gran impacto en el mundo.
-  - Si la fama está entre 3 y 5, el personaje es reconocido como una leyenda vaga en los mares, pero no deja una huella profunda en la historia.
-  - Si la fama se encuentra entre 6 y 8, se menciona que el personaje será recordado como un bravo guerrero del mar, aunque no alcanzó el estatus de leyenda.
-  - Si la fama es mayor a 8, el personaje es considerado una leyenda, cuyo único enemigo fue el tiempo.
 ### Función menuJuego():
 ![imagen](https://github.com/user-attachments/assets/ff1752d4-022f-4bb0-8205-b688ed2d94c9)
 Presenta un menú interactivo para que el jugador elija una acción dentro del juego. Muestra una serie de opciones disponibles y luego captura la entrada del usuario para determinar qué acción se debe tomar.
@@ -103,6 +95,98 @@ Selecciona un arco de historia para el personaje basado en las probabilidades as
   - Creación de lista de pesos: Si hay arcos disponibles, crea una lista pesos donde cada valor corresponde a la probabilidad asociada a cada arco. Esta probabilidad se encuentra en el tercer valor de cada sublista dentro de arcos (arco[2]).
   - Selección ponderada: Utiliza la función random.choices() para elegir un arco de manera ponderada, considerando las probabilidades definidas en pesos. La función selecciona un arco basado en la probabilidad asignada a cada uno, favoreciendo aquellos con mayor peso.
   - Retorno del arco seleccionado: Finalmente, la función retorna el arco elegido.
+### Función SelectorDeEvento():
+![imagen](https://github.com/user-attachments/assets/77599d49-0b87-4479-b890-e528964b2bdf)
+Selecciona aleatoriamente un evento que el personaje debe enfrentar, con una distribución de probabilidades. Si el personaje tiene una fruta, los posibles eventos se limitan a ciertos tipos, mientras que si no tiene una fruta, los eventos disponibles incluyen otros tipos con probabilidades ajustadas.
+- Flujo:
+  - Verificación de fruta asignada: La función verifica si el personaje tiene una fruta asignada (personaje["fruta"]). Si el personaje no tiene una fruta asignada (es decir, None), se procede a la primera lógica de selección de eventos.
+    - Si no tiene fruta:
+      - Se definen tres posibles eventos: "enemigo", "fruta", y "boss".
+      - La selección de estos eventos se hace de manera ponderada, con probabilidades asignadas de 40% para "enemigo", 20% para "fruta", y 40% para "boss". Estas probabilidades definen cómo se distribuyen los eventos durante el juego.
+      - Si tiene una fruta:
+          - Los eventos posibles se limitan a "enemigo" y "boss" (ya que no puede obtener otra fruta).
+          - La selección de eventos se hace aleatoriamente entre estos dos, sin ponderación.
+  - Selección de evento: Dependiendo de la situación, el evento se elige utilizando random.choices() para ponderar las probabilidades (cuando no tiene fruta) o random.choice() cuando la selección es aleatoria entre "enemigo" y "boss" (si tiene una fruta).
+  - Retorno del evento seleccionado: Finalmente, la función retorna el evento elegido, que puede ser "enemigo", "fruta" o "boss".
+### Función combate(name,es_boss):
+![imagen](https://github.com/user-attachments/assets/678bda02-7641-45b1-96c1-f143cb975850)
+Maneja un enfrentamiento entre el personaje y un enemigo o jefe. Dependiendo de si el combate es contra un jefe o un enemigo común, las estadísticas y el flujo del combate cambian. El jugador tiene la opción de pelear o huir, y el combate se resuelve por turnos en función de las estadísticas de ambos personajes.
+- Parámetros:
+  - name (str): El nombre del enemigo o jefe contra el cual se combate.
+  - es_boss (bool): Un valor booleano que indica si el combate es contra un jefe (True) o contra un enemigo común (False).
+- Flujo:
+  1. Selección de enemigo:
+      - Si el combate es contra un jefe, las estadísticas se toman de un diccionario predefinido de jefes (bosses), que contiene valores como hp, atq, def, y vel.
+      - Si el combate es contra un enemigo común, las estadísticas del enemigo se generan aleatoriamente en función de las estadísticas del personaje.
+  2. Inicio del combate:
+      - Se guarda la vida original del personaje antes de iniciar el combate, para que, en caso de huir, se pueda restaurar.
+      - Se muestran las estadísticas del personaje y del enemigo, incluyendo la vida, ataque, defensa, y velocidad.
+  3. Opciones de acción:
+     - El jugador tiene dos opciones:
+         - Pelear: Si el jugador elige pelear, se resuelven los turnos de combate.
+         - Huir: El jugador puede intentar huir, con una probabilidad determinada por la velocidad del jugador y el enemigo. Si tiene éxito, el combate termina y el jugador "escapa".
+      - Si la opción elegida no es válida, el sistema sigue pidiendo al jugador que ingrese una opción válida.
+  4. Resolución del combate:
+     - Turnos de combate:
+         - Si el personaje tiene mayor velocidad que el enemigo, el jugador ataca primero.
+         - Si el enemigo tiene mayor velocidad, el enemigo ataca primero.
+      - En cada turno:
+        - El jugador inflige daño al enemigo según su ataque y la defensa del enemigo.
+        - El enemigo inflige daño al jugador según su ataque y la defensa del jugador.
+      - Se repiten los turnos hasta que uno de los dos personajes pierda toda su vida (hp).
+  5. Resultado:
+     - Si el enemigo pierde todo su hp: El jugador gana el combate, sus estadísticas (vida, ataque, defensa, velocidad) aumentan en función de las estadísticas del enemigo derrotado, y el combate termina con una victoria.
+     - Si el jugador pierde todo su hp: El jugador pierde el combate y el juego devuelve el resultado como "derrota".
+  6. Retorno:
+     - "victoria": Si el jugador gana el combate.
+     - "derrota": Si el jugador pierde el combate.
+     - "escapas": Si el jugador huye con éxito del combate.
+### Función mostrarEstadisticas():
+![imagen](https://github.com/user-attachments/assets/f3a25812-d0f6-49a3-93f6-e37078fc8a19)
+Se encarga de mostrar de manera visual y representativa las estadísticas del personaje, usando iconos para cada atributo. Las estadísticas mostradas incluyen la vida (hp), el ataque (atq), la defensa (def), y la velocidad (vel). La cantidad de iconos por atributo es proporcional al valor de cada estadística, proporcionando una representación fácil de interpretar.
+- Flujo:
+  1. Generación de iconos:
+     - Para cada atributo del personaje (hp, atq, def, vel), se genera una cadena de texto compuesta por iconos repetidos:
+       - ❤️ para la vida (hp), con una frecuencia proporcional a la vida dividida por 10.
+       - ⚔️ para el ataque (atq), con una frecuencia proporcional al ataque dividido por 5.
+       - 🛡️ para la defensa (def), con una frecuencia proporcional a la defensa dividida por 5.
+       - 👢 para la velocidad (vel), con una frecuencia proporcional a la velocidad dividida por 5.
+  2. Impresión de las estadísticas:
+     - Se imprime el nombre del personaje seguido de sus estadísticas representadas visualmente con los iconos generados.
+  3. Formato:
+     - La salida sigue un formato claro y estructurado, con etiquetas para cada estadística (Vida, Ataque, Defensa, Velocidad) y los iconos correspondientes.
+ ### Función selectorFruta():
+![imagen](https://github.com/user-attachments/assets/4da5477a-b22a-4f81-b19a-a26372fb6eb3)
+Simula la selección aleatoria de una fruta de la lista frutas. Dependiendo de la fruta seleccionada, el personaje tiene sus atributos modificados, como hp, def, atq, y vel.\
+- Uso de random.choice(frutas):
+  - Esto selecciona aleatoriamente una fruta de la lista frutas.
+- Modificación de los atributos:
+  - Cada fruta tiene un efecto específico sobre el personaje:
+    
+| Fruta del Diablo     | Aumento de Stats                              | Disminución de Stats   |
+|----------------------|-----------------------------------------------|------------------------|
+| Gomu Gomu no Mi      | HP +10%, DEF +10%                             | Vel -10%               |
+| Mera Mera no Mi      | ATQ +20%, Vel +10%                            | DEF -10%               |
+| Hie Hie no Mi        | DEF +20%, ATQ +10%                            | Vel -10%               |
+| Pika Pika no Mi      | Vel +30%, ATQ +15%                            | DEF -10%               |
+  - Impresión de efectos visuales:\
+    Para cada fruta, el código imprime una representación artística (en forma de texto) y una breve descripción de los poderes que otorga la fruta.
+### Función consumirFruta(fruta):
+![imagen](https://github.com/user-attachments/assets/5c360db7-0469-41f1-9303-94f9d19d6668)
+Permite que un personaje consuma una fruta del diablo, asignándosela a su inventario y eliminándola de la lista de frutas disponibles para otros personajes.
+- Parámetros:
+  - fruta (str): El nombre de la fruta del diablo que el personaje va a consumir.
+- Efectos:
+  - Asigna la fruta seleccionada al personaje, almacenando su nombre en el diccionario personaje["fruta"].
+  - Elimina la fruta de la lista frutas, de manera que ya no pueda ser consumida por otros personajes.
+### Función descartarFruta():
+![imagen](https://github.com/user-attachments/assets/5dd2770a-95ba-4a1c-bbb6-fa91b824963e)
+Permite descartar una fruta del diablo de la lista de frutas disponibles. Elimina la fruta especificada de la lista, lo que significa que ya no estará disponible para ser consumida por ningún personaje.
+- Parámetros:
+  - fruta (str): El nombre de la fruta del diablo que se va a descartar.
+- Efectos:
+  - Elimina la fruta especificada de la lista frutas, asegurando que ya no pueda ser utilizada ni consumida.
+
 
 
 ## Funciones necesarias para crear al personaje:
@@ -190,3 +274,13 @@ Guarda o actualiza la partida actual en un archivo JSON. Si no se proporciona un
   3. Si se proporciona un id, se actualiza la partida correspondiente con los datos del personaje y los arcos.
   4. Guarda las partidas actualizadas en el archivo OnePieceGame.json.
   5. Si ocurre un error durante el proceso, imprime un mensaje de error.
+
+## Finales
+### Función muerteVejez():
+![imagen](https://github.com/user-attachments/assets/34acbed3-6c2e-4912-a66f-abb2063eba96)
+Simula el final de la vida de un personaje debido a la vejez. El mensaje mostrado depende del nivel de fama del personaje al momento de su muerte. Según la fama del personaje, el mensaje varía para reflejar su impacto en la historia o la falta del mismo.
+- Flujo:
+  - Si el nivel de fama del personaje es menor o igual a 2, se indica que el personaje vivió algunas aventuras, pero sin un gran impacto en el mundo.
+  - Si la fama está entre 3 y 5, el personaje es reconocido como una leyenda vaga en los mares, pero no deja una huella profunda en la historia.
+  - Si la fama se encuentra entre 6 y 8, se menciona que el personaje será recordado como un bravo guerrero del mar, aunque no alcanzó el estatus de leyenda.
+  - Si la fama es mayor a 8, el personaje es considerado una leyenda, cuyo único enemigo fue el tiempo.
