@@ -534,7 +534,7 @@ def ideales():
                 ideal = random.choice(["pirata", "revolucionario"])
                 return ideal
         else:
-        # Si el lugar de nacimiento no es Isla de la Armada Revolucionaria ni Mary Geoise,        else:
+        # Si el lugar de nacimiento no es Isla de la Armada Revolucionaria ni Mary Geoise
             ideal = random.choice(["pirata", "marine", "bandido", "revolucionario"])
             return ideal
     except:
