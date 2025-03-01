@@ -249,7 +249,8 @@ Descripción de los Efectos
 3. **Bandido**: El personaje, forjado en la miseria, tiene un aumento significativo en su velocidad, pero una penalización en salud.
 4. **Caballero Sagrado**: Criado en la nobleza y entrenado desde joven, el personaje recibe una mejora del 15% en todos sus atributos.
 5. **Noble**: Nacido en un entorno privilegiado, el personaje sufre una gran penalización en todos sus atributos, excepto en salud.
-## Funciones necesarias para cargar y guardar paridas:
+## Funciones necesarias para cargar y guardar partidas:
+Para gestionar las partidas guardadas se hace uso de un archivo .json, por lo que se debe importat la librería json.
 ### Función guardarPartida:
 ![imagen](https://github.com/user-attachments/assets/d374dc7b-3e79-4eaf-9da4-4e380c2b78ea)
 Esta función carga las partidas guardadas desde un archivo JSON. Si el archivo no existe o está corrupto, devuelve una lista vacía.
