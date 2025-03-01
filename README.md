@@ -1,3 +1,5 @@
+> [!NOTE]
+> Los dibujos ascii están generados a partir de imágenes usando la página [https://emojicombos.com], esta página también cuenta con diseños ya hechos que he usado
 # Explicación del código detallada:
 En este apartado voy a realizar una explicación más detallada de este proyecto, más allá de los comentarios ya realizados en el código.\
 He dividido el código en 3 secciones distintas:
