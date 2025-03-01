@@ -1105,27 +1105,27 @@ Velocidad: {vel_enemigo}
             # Se determina quién ataca primero en base a la velocidad
             if personaje["vel"] > enemigo["vel"]:
                 # Turno del jugador
-                danio_enemigo = max(0, personaje["atq"] - enemigo["def"])
+                danio_enemigo = max(10, personaje["atq"] - enemigo["def"])
                 enemigo["hp"] -= danio_enemigo
                 print(f"Has infligido {danio_enemigo:.2f} puntos de daño a {name}.")
                 
                 if enemigo["hp"] <= 0:
                     victoria = True            
                 # Turno del enemigo
-                danio_personaje = max(0, enemigo["atq"] - personaje["def"])
+                danio_personaje = max(10, enemigo["atq"] - personaje["def"])
                 personaje["hp"] -= danio_personaje
                 print(f"{name} te ha infligido {danio_personaje:.2f} puntos de daño.")              
                 if personaje["hp"] <= 0:
                     return "derrota"
             else:
                 # Turno del enemigo primero
-                danio_personaje = max(0, enemigo["atq"] - personaje["def"])
+                danio_personaje = max(10, enemigo["atq"] - personaje["def"])
                 personaje["hp"] -= danio_personaje
                 print(f"{name} te ha infligido {danio_personaje:.2f} puntos de daño.")               
                 if personaje["hp"] <= 0:
                     return "derrota"              
                 # Turno del jugador
-                danio_enemigo = max(0, personaje["atq"] - enemigo["def"])
+                danio_enemigo = max(10, personaje["atq"] - enemigo["def"])
                 enemigo["hp"] -= danio_enemigo
                 print(f"Has infligido {danio_enemigo:.2f} puntos de daño a {name}.")              
                 if enemigo["hp"] <= 0:
