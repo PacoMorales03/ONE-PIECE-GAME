@@ -1,5 +1,11 @@
 # Explicación del código detallada:
+En este apartado voy a realizar una explicación más detallada de este proyecto, más allá de los comentarios ya realizados en el código.\
+He dividido el código en 3 secciones distintas:
+- Flujo principal
+- Funciones necesarias para cargar y guardar partida
+- Finales
 ## Flujo principal del código:
+Aquí se encuentran tanto el bloque principal como las funciones utilizadas para el funcionamiento general de el código. 
 ### Bloque principal:
 ![imagen](https://github.com/user-attachments/assets/6aace5a0-045b-46fb-901e-76773eeeb830)
 Permite al jugador iniciar una nueva partida, cargar una partida guardada o salir del juego. El flujo general del juego está basado en un menú de opciones que se repite hasta que el jugador decide salir. A continuación, se detalla el funcionamiento de cada parte del código:
@@ -54,7 +60,7 @@ Funcionamiento:
   - El jugador debe interactuar con el menú y tomar decisiones que afectan el progreso del personaje.
   - Condiciones iniciales: Si la edad del personaje supera su esperanza de vida, el juego termina automáticamente.
   - Menú de decisiones: Dependiendo de la opción seleccionada (1, 2, 3, 4, 5):
-      1. Opción 1: Inicia la aventura. Si el personaje tiene un arco, se llevan a cabo diferentes eventos de la historia (combates, frutas, jefes, etc.).
+      1. Opción 1: Inicia la aventura. Si el personaje tiene un arco, se llevan a cabo diferentes eventos de la historia.
       2. Opción 2: Entrenamiento, donde el personaje aumenta estadísticas (si es posible).
       3. Opción 3: El personaje decide retirarse.
       4. Opción 4 o 5: Guardar la partida y finalizar el juego.
@@ -190,6 +196,7 @@ Permite descartar una fruta del diablo de la lista de frutas disponibles. Elimin
 
 
 ## Funciones necesarias para crear al personaje:
+Aquí están las funciones encargadas de inicializar el personaje y necesarias para el juego 
 ### Función crearPersonaje():
 ![imagen](https://github.com/user-attachments/assets/b1e3531c-1428-4996-a2b8-aca9b0eaee94)
 Se encarga de generar un personaje completo para un juego de rol, con las siguientes características:
@@ -276,6 +283,7 @@ Guarda o actualiza la partida actual en un archivo JSON. Si no se proporciona un
   5. Si ocurre un error durante el proceso, imprime un mensaje de error.
 
 ## Finales
+Aquí se encuentran los distintos finales psoibles del juego
 ### Función muerteVejez():
 ![imagen](https://github.com/user-attachments/assets/34acbed3-6c2e-4912-a66f-abb2063eba96)
 Simula el final de la vida de un personaje debido a la vejez. El mensaje mostrado depende del nivel de fama del personaje al momento de su muerte. Según la fama del personaje, el mensaje varía para reflejar su impacto en la historia o la falta del mismo.
@@ -284,3 +292,39 @@ Simula el final de la vida de un personaje debido a la vejez. El mensaje mostrad
   - Si la fama está entre 3 y 5, el personaje es reconocido como una leyenda vaga en los mares, pero no deja una huella profunda en la historia.
   - Si la fama se encuentra entre 6 y 8, se menciona que el personaje será recordado como un bravo guerrero del mar, aunque no alcanzó el estatus de leyenda.
   - Si la fama es mayor a 8, el personaje es considerado una leyenda, cuyo único enemigo fue el tiempo.
+### Función mensajeDerrota():
+![imagen](https://github.com/user-attachments/assets/e63f4e44-4781-4c6b-ba6e-6b18826a7460)
+Simula el final de la vida de un personaje debido a la muerte en combate. El mensaje mostrado depende del nivel de fama del personaje al momento de su muerte. Según su fama, el mensaje varía para reflejar su impacto en la historia o la falta del mismo.
+- Flujo:
+  - Si el nivel de fama del personaje es menor o igual a 2, se indica que su muerte no deja huella en la historia, siendo olvidado rápidamente.
+  - Si la fama está entre 3 y 5, se menciona que el personaje comenzaba a ser reconocido, pero su muerte llega antes de consolidar su legado.
+  - Si la fama se encuentra entre 6 y 8, se destaca que el personaje era un guerrero en ascenso, pero su caída impide que alcance la categoría de leyenda.
+  - Si la fama es mayor a 8, se reconoce que incluso las leyendas pueden caer, pero su legado será recordado por generaciones.
+### Función retirarse():
+![imagen](https://github.com/user-attachments/assets/3180278d-c3ec-4d1d-b99b-1da3dfc72ced)
+Simula el retiro de un personaje antes de morir. El mensaje mostrado varía dependiendo de su nivel de fama al momento de retirarse, reflejando el impacto que tuvo en la historia.
+- Flujo:
+  - Se genera un número aleatorio de hijos entre 0 y 5.
+  - Se menciona la edad en la que el personaje fallece tras su retiro.
+  - Si la fama es menor o igual a 2, su nombre será olvidado con el tiempo.
+  - Si la fama está entre 3 y 5, su historia será recordada vagamente en los mares.
+  - Si la fama está entre 6 y 8, será recordado como un bravo guerrero, pero sin alcanzar la inmortalidad de una leyenda.
+  - Si la fama es mayor a 8, se le considerará una leyenda cuyo único enemigo fue el paso del tiempo.
+### Función finalNoble():
+![imagen](https://github.com/user-attachments/assets/82d9edd9-f677-4573-99d8-cda83e180cfb)
+Describe el final de un personaje noble, en un contexto donde se refleja su vida sin escrúpulos ni piedad, observando guerras y batallas sin afectarse. La muerte del personaje se describe de manera sombría, destacando su vida llena de poder y su muerte sin grandes logros ni sufrimiento.
+### Función victoriaPirata()
+![imagen](https://github.com/user-attachments/assets/b1bc9554-7239-4f99-8ec5-8b5e1d7d9e43)
+Muestra un mensaje de victoria si el personaje ha alcanzado su sueño como pirata, con su nombre siendo reconocido por los mares y su bandera ondeando alto.
+### Función victoriaMarine():
+![imagen](https://github.com/user-attachments/assets/388ceb15-cc6d-4508-8927-4f34c158fef9)
+Muestra un mensaje de victoria si el personaje ha logrado su sueño como marine, convirtiéndose en un símbolo de justicia y orden en los mares.
+### Función victoriaRevolucionario():
+![imagen](https://github.com/user-attachments/assets/daa1081f-3e93-4d4e-8ba9-559a9c6f3f41)
+Muestra un mensaje de victoria si el personaje sigue el ideal revolucionario, desafiando al Gobierno Mundial y liberando al pueblo.
+### Función victoriaCaballeroSagrado():
+![imagen](https://github.com/user-attachments/assets/d1bac9fb-4c22-4b2c-85d0-786f37234721)
+Muestra un mensaje de victoria si el personaje sigue el ideal de caballero sagrado, siendo reconocido por los Dragones Celestiales y gobernando desde la élite del mundo.
+### Función victoriaBandido():
+![imagen](https://github.com/user-attachments/assets/1f79f363-a8eb-43dc-9acf-74e830d587a0)
+Muestra un mensaje de victoria si el personaje sigue el ideal de bandido, imponiendo su propia ley y dominando mares y tierras sin rendir cuentas a nadie.
