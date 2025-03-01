@@ -1370,7 +1370,6 @@ def bucleJuego():
                 partida["id"] = None  # Se reinicia el ID de la partida.
                 seguir = False  # Se termina el bucle.
 
-
 seguir = True  # Se inicializa la variable que controlará el bucle del juego.
 dibujoInicio()  # Muestra un dibujo o pantalla de inicio.
 # Inicia el bucle del juego que continuará mientras 'seguir' sea True.
