@@ -341,7 +341,7 @@ A lo largo del código he implementado distintas estructuras lógicas para el ma
 En este caso el try-except se encarga de controlar que el dato introducido sea numérico y en caso de no serlo no termine el programa por un error
 ### Ejemplo 2:
 ![imagen](https://github.com/user-attachments/assets/1333d55a-31c7-4497-a6e8-c3675ceda511)
-Aquí en caso de no poder abrir el archivo json con las partidas guardadas devolvería una lista vacía, esto se hace así para que posteriormente no genere un error al intentar seleccionar la partida.
+Aquí en caso de no poder abrir el archivo json con las partidas guardadas devolvería una lista vacía, esto se hace así para que posteriormente no genere un error al intentar seleccionar la partida.\
 A parte de la gestión de errores con los try-excepts he tratado de llevar una buena organización a la hora de manejar todas las opciones posibles cada vez que ha sido necesario, para esto he usado if,elif y else anidados.
 ### Ejemplo 3:
 ![imagen](https://github.com/user-attachments/assets/7c514779-507f-45b8-8f43-39ebab51ae97)
