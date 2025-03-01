@@ -566,8 +566,8 @@ def infancia():
     elif personaje["ideal"] == "revolucionario":
         print(f"Durante tu infancia has vivido muchos eventos traumáticos que te han marcado e inpirado en tu lucha contra el gobierno mundial, tienes el ideal de un {personaje['ideal']}")
         personaje["atq"] *= 1.05
-        personaje["def"] *= 1.005
-        personaje["vel"] *= 1.005
+        personaje["def"] *= 1.05
+        personaje["vel"] *= 1.05
         personaje["hp"] *= 0.85
     elif personaje["ideal"] == "bandido":
         print(f"Desde pequeño has estado viviendo en la miseria e intentando salir adelante por lo que has crecido como un {personaje['ideal']}")
