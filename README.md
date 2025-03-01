@@ -351,7 +351,7 @@ En este caso se cubren todas las opciones disponibles usando if-else. Esto hace 
 ### Lanzarte a la aventura
 ![imagen](https://github.com/user-attachments/assets/0b2e2808-4428-4665-b099-2e1bcd6983d9)
 ### Pelear
-![imagen](https://github.com/user-attachments/assets/427215ba-f509-4faa-b365-c3a31269055e)ç
+![imagen](https://github.com/user-attachments/assets/427215ba-f509-4faa-b365-c3a31269055e)  
 Durante esta prueba me he dado cuenta de que hay que reajustar el daño del combate para siempre hacer un mínimo de daño, por lo que he corregido eso:
 ![imagen](https://github.com/user-attachments/assets/48445970-d278-4d55-a3e1-8754d3f6a146)
 Ahora si el resultado del ataque menos la defensa es menor a 10 se inflingirá siempre 10 de daño. 
