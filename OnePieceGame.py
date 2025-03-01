@@ -1064,6 +1064,7 @@ def combate(name, es_boss):
     else:
         # Generación de un enemigo aleatorio basado en las estadísticas del personaje
         enemigo = {
+            # random uniform sirve para generar un número aleatorio incluyendo decimales
             "hp": random.uniform(personaje["hp"] // 2, personaje["hp"] + 50),
             "atq": random.uniform(personaje["atq"], personaje["atq"] + 5),
             "def": random.uniform(personaje["def"] * 0.5, personaje["def"]),
